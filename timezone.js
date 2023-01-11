@@ -1,107 +1,48 @@
-function TimpBucuresti() {
-    let date = new Date(); 
-    let hh = date.getHours();
-    let mm = date.getMinutes();
-    let ss = date.getSeconds();
-    let session = "AM";
-  
-    if(hh == 0){
-        hh = 12;
-    }
-    if(hh > 12){
-        hh = hh - 12;
-        session = "PM";
-     }
-  
-     hh = (hh < 10) ? "0" + hh : hh;
-     mm = (mm < 10) ? "0" + mm : mm;
-     ss = (ss < 10) ? "0" + ss : ss;
-  
-     let timp = hh + ":" + mm + ":" + ss + " " + session;
-  
-    document.getElementById("ceas1").innerText = timp; 
-    let t = setTimeout(function(){ TimpBucuresti() }, 1000);
-  }
-TimpBucuresti();
 
-function TimpZurich() {
-    let date = new Date(); 
-    let hh = date.getHours() -1;
-    let mm = date.getMinutes();
-    let ss = date.getSeconds();
-    let session = "AM";
-  
-    if(hh == 0){
-        hh = 12;
-    }
-    if(hh > 12){
-        hh = hh - 12;
-        session = "PM";
-     }
-  
-     hh = (hh < 10) ? "0" + hh : hh;
-     mm = (mm < 10) ? "0" + mm : mm;
-     ss = (ss < 10) ? "0" + ss : ss;
-  
-     let timp = hh + ":" + mm + ":" + ss + " " + session;
-  
-    document.getElementById("ceas2").innerText = timp; 
-    let t = setTimeout(function(){ TimpZurich() }, 1000);
-  }
-
-TimpZurich();
-
-function TimpNewYork() {
-    let date = new Date(); 
-    let hh = date.getHours() -6;
-    let mm = date.getMinutes();
-    let ss = date.getSeconds();
-    let session = "AM";
-  
-    if(hh == 0){
-        hh = 12;
-    }
-    if(hh > 12){
-        hh = hh - 12;
-        session = "PM";
-     }
-  
-     hh = (hh < 10) ? "0" + hh : hh;
-     mm = (mm < 10) ? "0" + mm : mm;
-     ss = (ss < 10) ? "0" + ss : ss;
-  
-     let timp = hh + ":" + mm + ":" + ss + " " + session;
-  
-    document.getElementById("ceas3").innerText = timp; 
-    let t = setTimeout(function(){ TimpNewYork() }, 1000);
-
-  }
-
-TimpNewYork();
-
-function TimpSingapore() {
-    let date = new Date(); 
-    let hh = date.getHours() +6;
-    let mm = date.getMinutes();
-    let ss = date.getSeconds();
-    let session = "AM";
-  
-    if(hh == 0){
-        hh = 12;
-    }
-    if(hh > 12){
-        hh = hh - 12;
-        session = "PM";
-     }
-  
-     hh = (hh < 10) ? "0" + hh : hh;
-     mm = (mm < 10) ? "0" + mm : mm;
-     ss = (ss < 10) ? "0" + ss : ss;
-  
-     let timp = hh + ":" + mm + ":" + ss + " " + session;
-  
-    document.getElementById("ceas4").innerText = timp; 
-    let t = setTimeout(function(){ TimpSingapore() }, 1000);
-  }
-
-TimpSingapore();
+        function startTime() {
+          var now = new Date();
+          var utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
+          var h = utc.getHours();
+          var m = utc.getMinutes();
+          var s = utc.getSeconds();
+          m = checkTime(m);
+          s = checkTime(s);
+          var buc = h + 2;
+            if (buc>24){
+              buc -=24;
+            }
+          var zur = h + 1;
+              if (zur>24){
+              zur -=24;
+            }
+          var ny = h - 5;
+              if (ny>24){
+              ny -=24;
+            }
+          var sin = h + 8;
+              if (sin>24){
+              sin -=24;
+            }
+         
+            
+          document.getElementById('buch').innerHTML =
+              buc + ":" + m + ":" + s;
+          document.getElementById('buch').style.color = "#751775";
+          document.getElementById('zurc').innerHTML =
+              zur + ":" + m + ":" + s;
+          document.getElementById('zurc').style.color = "#ad2d2d";
+          document.getElementById('nyc').innerHTML =
+              ny +  ":" + m + ":" + s;
+          document.getElementById('nyc').style.color = "#ce5606";
+          document.getElementById('sing').innerHTML =
+              sin + ":" + m + ":" + s;
+          document.getElementById('sing').style.color = "#49702e";
+        
+          var t = setTimeout(startTime, 500);
+        }
+        function checkTime(i) {
+            if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
+            return i;
+        }
+        
+        
